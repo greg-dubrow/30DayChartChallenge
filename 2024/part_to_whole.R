@@ -20,6 +20,7 @@ library(patchwork) # to stitch together plots
 library(ggtext) # helper functions for ggplot text
 library(ggrepel) # helper functions for ggplot text
 
+# load tidy tuesday data
 ukeduc1 <- tt_load("2024-01-23")
 
 # get variable names
