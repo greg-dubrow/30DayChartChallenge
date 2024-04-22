@@ -106,7 +106,7 @@ ukeduc %>%
 	geom_text(data = subset(tmp, ed_attain_pct >0.025),
 		aes(label = scales::percent(round(ed_attain_pct , 2))),
 						position = position_stack(vjust = 0.5),
-						color= "white", vjust = 1, size = 6) +
+						color= "white", vjust = 0.5, size = 6) +
 	labs(title = "Students in London most likely to have at least 4-year degree by Age 22",
 		subtitle = "Sixth Year Educational Outcomes for Level 4 2012-13 Cohort by UK Region",
 		caption = "*Tidy Tuesday data 01/23/2024, from UK Office of National Statistics*",
@@ -114,8 +114,8 @@ ukeduc %>%
 	scale_fill_brewer(palette = "Set2") +
 	theme_minimal() +
 	theme(legend.position = "bottom", legend.spacing.x = unit(0, 'cm'),
-				legend.key.width = unit(1.5, 'cm'),
-				plot.title = element_text(hjust = 0.5), plot.caption = element_markdown(),
+				legend.key.width = unit(1.5, 'cm'), legend.margin=margin(-10, 0, 0, 0),
+				plot.title = element_text(hjust = 1), plot.caption = element_markdown(),
 				panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
 	guides(fill = guide_legend(label.position = "bottom", reverse = TRUE,
 														 title = "Cohort at Age 22", title.position = "top"))
