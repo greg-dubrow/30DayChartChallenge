@@ -1,4 +1,4 @@
-## code for 30 Day Chart Challenge 2024, day 1 Part to Whole
+## code for 30 Day Chart Challenge 2024, day 3 redo & day 4 Waffle
 ## using Tidy Tuesday data https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-01-23/readme.md
 ## redo of prompt 1, now to waffle
 
