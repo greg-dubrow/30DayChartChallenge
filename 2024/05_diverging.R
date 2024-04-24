@@ -4,7 +4,6 @@
 ## original table https://www.statbank.dk/statbank5a/SelectVarVal/Define.asp?Maintable=HFUDD11&PLanguage=1
 # using danstat package https://github.com/ValeriVoev/danstat
 
-library(tidyverse)
 library(tidyverse) # to do tidyverse things
 library(tidylog) # to get a log of what's happening to the data
 library(janitor) # tools for data cleaning
