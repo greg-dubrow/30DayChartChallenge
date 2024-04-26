@@ -1,4 +1,4 @@
-## code for 30 Day Chart Challenge 2024, day 5 diverging
+## code for 30 Day Chart Challenge 2024, day 6 OECD
 ## educational attainment via OECD package
 ## nordics, by sex 25 to 64, 2020-2022
 
@@ -33,10 +33,13 @@ view(oecd_metadata$CL_EDUCATION_LEV_ISCED11)
 datalabs_ct <- oecd_metadata$CL_REGIONAL %>%
 	rename(COUNTRY = id)
 
+## to speed up blog post rendering saving this as data object to load into env
+saveRDS(datalabs_ct, file = "2024/data/oecd_datalabs_ct.rds")
+
 
 edlev %>%	count(label)
 
-# keep only neccessary vars, change some to factors & add labels
+# keep only necessary vars, change some to factors & add labels
 oecd <- oecd1 %>%
 	mutate(EDUCATION_LEV =
 				 	factor(EDUCATION_LEV,
@@ -58,7 +61,6 @@ glimpse(oecd)
 
 oecd %>%
 	filter(year == "2022") %>%
-#	filter(sex == "Female") %>%
 	ggplot(aes(pct_attain, fct_rev(country), fill = fct_rev(education_lev))) +
 	geom_bar(stat = "identity") +
 	scale_x_continuous(expand = c(0,0),
@@ -68,9 +70,9 @@ oecd %>%
 	geom_text(aes(label = scales::percent(round(pct_attain , 2))),
 						position = position_stack(vjust = 0.5),
 						color= "white", vjust = 0.5, size = 5) +
-	labs(title = "In Nordic countries, women age 25-64 more likely than men to complete college.<br>
-			 Finns have lowest levels of attainment stopping at lower secondary",
-			 subtitle = "*Educational Attainment in Nordic Countries, by Sex, ages 25-64 combined, 2022*",
+	labs(title = "In Nordic countries, women age 25-64 more likely than men to complete college.<br><br>
+			 Finns have lowest percentage of attainment stopping at lower secondary",
+			 subtitle = "<br>*Educational Attainment in Nordic Countries, by Sex, ages 25-64 combined, 2022*",
 			 caption = "*Data from OECD, via oecd package for r*",
 			 x = "", y = "") +
 	scale_fill_brewer(palette = "Set2") +
@@ -79,6 +81,7 @@ oecd %>%
 				legend.key.width = unit(1.5, 'cm'), legend.margin=margin(-10, 0, 0, 0),
 				plot.title = element_markdown(), plot.subtitle = element_markdown(),
 				plot.caption = element_markdown(),
+				axis.text.y = element_text(size = 12),
 				panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
 	guides(fill = guide_legend(label.position = "bottom", reverse = TRUE,
 														 title = "Education Levels", title.position = "top"))
