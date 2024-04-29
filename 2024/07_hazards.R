@@ -45,7 +45,8 @@ crime_meta <- statsDK::sdk_retrieve_metadata("STRAF11")
 # read in file. need to fill down first two columns
 # criminal code = sexual offences + violence + property + other
 # nature of the offence total = sexual offences + violence + property + other + special acts
-crime_2023_1 <- readxl::read_excel("2024/data/dk_crime_by_province_2023.xlsx") %>%
+#crime_2023_1 <- readxl::read_excel("2024/data/dk_crime_by_province_2023.xlsx") %>%
+crime_2023_1 <- readxl::read_excel("~/Data/r/30 Day Chart Challenge/2024/data/dk_crime_by_province_2023.xlsx") %>%
 	clean_names() %>%
 	fill(offence_cat_code) %>%
 	fill(offence_cat_name) %>%
@@ -54,12 +55,33 @@ crime_2023_1 <- readxl::read_excel("2024/data/dk_crime_by_province_2023.xlsx") %
 	mutate(tot_2023 = rowSums(.[c(5:8)])) %>%
 	mutate(province_name = str_replace(province_name, "Province ", "")) %>%
 	mutate(offence_cat_name = str_replace(offence_cat_name, ", total", "")) %>%
+	mutate(offence_cat_name = str_replace(
+		offence_cat_name, "Nature of the offence", "All offences")) %>%
+	mutate(offence_cat_name = str_replace(
+		offence_cat_name, "Offences against property", "Property crime")) %>%
+	mutate(offence_cat_name = str_replace(
+		offence_cat_name, "Crimes of violence", "Violent crime")) %>%
+	mutate(offence_cat_name =
+				 	factor(offence_cat_name,
+				 				 levels = c("All offences", "Criminal code", "Sexual offenses", "Violent crime", "Property crime",
+				 				 					 "Other offences", "Special acts"))) %>%
 	select(province_name, offence_cat_name, tot_2023)
 
 glimpse(crime_2023_1)
 
 crime_2023_1 %>%
 	count(offence_cat_name)
+
+c("All offences", "Criminal code", "Sexual offenses", "Violent crime", "Property crime",
+	"Other offences", "Special acts")
+
+
+All offences  Criminal code       11
+3 Other offences      11
+4 Property crime      11
+5 Sexual offenses     11
+6 Special acts        11
+7 Violent crime
 
 ## get population data to normalize - again, need spreadsheet for provinces
 # based on total at start of 2023 Q3
@@ -149,8 +171,10 @@ dk_crime_map <- function(offence, maptitle) {
 					plot.title = element_text(size = 12, hjust = .6, vjust = -7),
 					axis.line = element_blank(), axis.ticks = element_blank(),
 					axis.text.x = element_blank(), axis.text.y = element_blank(),
-					#				legend.position = "bottom",
-					legend.position = c(.4, -.05)) +
+					legend.position = c(.4, -.05),
+					legend.title = element_text(size = 8),
+					legend.text = element_text(size = 8)
+					) +
 		guides(fill = guide_legend(
 			title = "Incidents per 100K people",
 			direction = "horizontal",
