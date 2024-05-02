@@ -75,14 +75,6 @@ crime_2023_1 %>%
 c("All offences", "Criminal code", "Sexual offenses", "Violent crime", "Property crime",
 	"Other offences", "Special acts")
 
-
-All offences  Criminal code       11
-3 Other offences      11
-4 Property crime      11
-5 Sexual offenses     11
-6 Special acts        11
-7 Violent crime
-
 ## get population data to normalize - again, need spreadsheet for provinces
 # based on total at start of 2023 Q3
 pop_2023 <- readxl::read_excel("2024/data/dk_pop_2023_q3.xlsx") %>%
