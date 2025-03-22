@@ -6,20 +6,30 @@ Follow my contributions on [my data blog](https://www.gregdubrow.io/posts/30-day
 All contributions made with R unless otherwise noted. Because I started the challenge late, I did not complete one for every prompt.
 
 <p align="center">
-<img src="/images/prompts_2024.jpg" width="60%">
+<img src="images/prompts_2024.jpg" width="60%">
 </p>
 
-## [Prompt 1 - Comparions: Part to whole](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt1)
+## [Prompt 1 - Comparisons: Part to whole](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt1)
 <p align="center">
 <img src="images/prompt1_2024.png" width="60%">
 </p>
 
-## [Prompt 2 - Comparions: Neo](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt2)
+## [Prompt 2 - Comparisons: Neo](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt2)
 <p align="center">
 <img src="images/prompt2_2024.png" width="60%">
 </p>
 
-## [Prompt 3 - Comparions: Redo & Waffle](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompts3and4)
+## [Prompt 3 - Comparisons: Redo & Waffle](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompts3and4)
 <p align="center">
 <img src="images/prompt3&4_2024.png" width="60%">
+</p>
+
+## [Prompt 5 - Comparisons: Diverging](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt5)
+<p align="center">
+<img src="images/prompt5_2024.png" width="60%">
+</p>
+
+## [Prompt 6 - Comparisons: OECD](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt6)
+<p align="center">
+<img src="images/prompt6_2024.png" width="60%">
 </p>
