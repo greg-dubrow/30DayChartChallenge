@@ -14,5 +14,5 @@ All contributions made with R unless otherwise noted.
 
 ## [Day 1 - Comparisons: Fractions](https://www.gregdubrow.io/)
 <p align="center">
-<img src="images/prompt1_2025.png" width="60%">
+<img src="2025/images/prompt1_2025.png" width="60%">
 </p>
