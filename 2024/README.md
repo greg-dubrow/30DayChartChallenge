@@ -43,7 +43,7 @@ All contributions made with R unless otherwise noted. Because I started the chal
 <p align="center">
 <img src="images/prompt8_2024_hour.png" width="60%">
 <p align="center">
-<img src="images/prompt8_2024_minuteß.png" width="60%">
+<img src="images/prompt8_2024_minute.png" width="60%">
 </p>
 
 ## [Prompt 9 - Comparisons: OECD](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt9)
