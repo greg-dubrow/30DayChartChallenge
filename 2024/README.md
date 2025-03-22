@@ -1,8 +1,11 @@
 # 30 Day Chart Challenge - 2024
 
-A repository containing code for the #30DayChartChallenge. 
+A repository containing code for the 2024 edition of the 30 Day Chart Challenge. 
+<p>
 More details on the challenge at [GitHub](https://github.com/30DayChartChallenge/Edition2024). 
-Follow my contributions on [my data blog](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/), and with some searching at [LinkedIn](https://www.linkedin.com/in/dubrowg/), or [BlueSky](https://bsky.app/profile/gregerskjerulf.bsky.social)
+<p>
+Follow my contributions on [my data blog](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/).
+<p>
 All contributions made with R unless otherwise noted. Because I started the challenge late, I did not complete one for every prompt.
 
 <p align="center">
