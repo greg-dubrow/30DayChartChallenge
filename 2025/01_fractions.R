@@ -88,7 +88,9 @@ edattain %>%
 	theme_minimal() +
 	theme(legend.position = "bottom", legend.spacing.x = unit(0, 'cm'),
 				legend.key.width = unit(1, 'cm'), legend.margin=margin(-12, 0, 0, 0),
-				plot.title = element_text(hjust = .5), plot.caption = element_markdown(),
+				plot.title = element_text(hjust = .5, size = 12),
+				plot.caption = element_markdown(size = 10),
+				axis.text.x = element_text(size = 10),
 				panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
 	guides(fill = guide_legend(label.position = "bottom", reverse = TRUE, direction = "horizontal",
 														 nrow = 1,
