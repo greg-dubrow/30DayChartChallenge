@@ -79,7 +79,7 @@ edattain %>%
 	geom_text(data = subset(tmp, age_pct >0.025),
 						aes(label = scales::percent(round(age_pct , 2))),
 						position = position_stack(vjust = 0.5),
-						color= "white", vjust = 0.5, size = 12) +
+						color= "white", vjust = 0.5, size = 14) +
 	scale_fill_brewer(palette = "Set3") +
 	labs(title = "Danes under 40 have a higher rate of post-Bachelor educational attainment than other age groups",
 			 subtitle = "Highest education level attained by age groups",
