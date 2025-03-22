@@ -14,7 +14,7 @@ All contributions made with R unless otherwise noted.
 
 ## [Day 1 - Comparisons: Fractions](https://www.gregdubrow.io/)
 <p align="center">
-<img src="images/prompt1_2025.png" width="60%">
+<img src="images/prompt1_2025.jpg" width="60%">
 </p>
 
 ## [Day 2 - Comparisons: Slope](https://www.gregdubrow.io/)
