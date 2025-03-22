@@ -87,11 +87,11 @@ edattain %>%
 			 x = "", y = "Age Group") +
 	theme_minimal() +
 	theme(legend.position = "bottom", legend.spacing.x = unit(0, 'cm'),
-				legend.key.width = unit(2, 'cm'), legend.margin=margin(-10, 0, 0, 0),
+				legend.key.width = unit(2.5, 'cm'), legend.margin=margin(-10, 0, 0, 0),
 				legend.text = element_text(size = 10), legend.title = element_text(size = 12),
 				plot.title = element_text(hjust = .5, size = 18),
 				plot.subtitle = element_text(size = 16),
-				plot.caption = element_markdown(size = 14),
+				plot.caption = element_markdown(size = 12, face = "italic"),
 				axis.text.x = element_text(size = 14),
 				axis.text.y = element_text(size = 14),
 				panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
