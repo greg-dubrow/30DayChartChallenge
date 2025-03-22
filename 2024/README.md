@@ -33,3 +33,20 @@ All contributions made with R unless otherwise noted. Because I started the chal
 <p align="center">
 <img src="images/prompt6_2024.png" width="60%">
 </p>
+
+## [Prompt 7 - Comparisons: OECD](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt7)
+<p align="center">
+<img src="images/prompt7_2024.png" width="60%">
+</p>
+
+## [Prompt 8 - Comparisons: OECD](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt8)
+<p align="center">
+<img src="images/prompt8_2024_hour.png" width="60%">
+<p align="center">
+<img src="images/prompt8_2024_minuteß.png" width="60%">
+</p>
+
+## [Prompt 9 - Comparisons: OECD](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt9)
+<p align="center">
+<img src="images/prompt9_2024.png" width="60%">
+</p>
