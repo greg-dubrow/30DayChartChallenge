@@ -2,7 +2,7 @@
 
 A repository containing code for the 2024 edition of the 30 Day Chart Challenge. 
 
-More details on the challenge at [GitHub](https://github.com/30DayChartChallenge/Edition2024). 
+More details on the 2024 challenge at [GitHub](https://github.com/30DayChartChallenge/Edition2024). 
 
 See my contributions on [my data blog](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/).
 

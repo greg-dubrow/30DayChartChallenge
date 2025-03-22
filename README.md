@@ -2,7 +2,7 @@
 
 Hub with code & charts made for the 30 Day Chart Challenge.
 
-More details on the challenge at [GitHub](https://github.com/30DayChartChallenge/Edition2025). 
+More details on the challenge at [GitHub](https://github.com/30DayChartChallenge). 
 
 Follow my contributions on [my data blog](https://www.gregdubrow.io/)
 
