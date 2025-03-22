@@ -75,6 +75,21 @@ all_dwa_tracks <-
 write_rds(all_dwa_tracks, 'all_dwa_tracks.rds')
 glimpse(all_dwa_tracks)
 
+# as of Dec 9 2024
+all_dwa2_tracks <-
+	ceiling(get_playlist_tracks(dwa2id, include_meta_info = TRUE)[['total']] / 100) %>%
+	seq() %>%
+	map(function(x) {
+		get_playlist_tracks(dwa2id, fields = NULL, limit = 100, offset = (x - 1) * 100,
+												market = NULL,
+												authorization = get_spotify_access_token(),
+												include_meta_info = FALSE)
+	}) %>% reduce(rbind)
+
+write_rds(all_dwa2_tracks, 'all_dwa2_tracks.rds')
+glimpse(all_dwa2_tracks)
+
+
 all_liked_tracks <-
 	ceiling(get_playlist_tracks("6mlrhYRlFv3Ji5xwzqFWwQ", include_meta_info = TRUE)[['total']] / 50) %>%
 	seq() %>%
@@ -93,6 +108,8 @@ write_rds(all_liked_tracks, '~/Data/r/spotify-analysis/data/liked_songs_list.rds
 
 glimpse(all_liked_tracks)
 getwd()
+
+all_liked_tracks <- readRDS('~/Data/r/spotify-analysis/data/liked_songs_list.rds')
 
 
 ## tibble for liked tracks ids to use in function.
@@ -159,6 +176,11 @@ Feat_scraper <- function(x) {
 	# outputting the entire tibble
 	return(tib)
 }
+
+track_test <- get_track_audio_features(c("2SotrXjkvjTZf05XSMKGyp", "07cTJ65GZ4Lvr6b1CtgPll"),
+																				 authorization = get_spotify_access_token())
+glimpse(gosta_audio2)
+
 
 
 # run these three in order to calculate time it took
