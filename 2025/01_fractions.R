@@ -79,7 +79,7 @@ edattain %>%
 	geom_text(data = subset(tmp, age_pct >0.025),
 						aes(label = scales::percent(round(age_pct , 2))),
 						position = position_stack(vjust = 0.5),
-						color= "white", vjust = 0.5, size = 5) +
+						color= "white", vjust = 0.5, size = 6) +
 	scale_fill_brewer(palette = "Set3") +
 	labs(title = "Danes under 40 have a higher rate of post-Bachelor educational attainment than other age groups",
 			 subtitle = "Highest education level attained by age groups",
@@ -95,7 +95,7 @@ edattain %>%
 														 title = "Highest Educational Attainment", title.position = "top")) +
 rm(tmp)
 
-ggsave("2025/images/30day_prompt1.jpg", width = 15, height = 8,
+ggsave("2025/images/prompt1_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
 
