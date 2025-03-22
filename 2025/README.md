@@ -16,3 +16,5 @@ All contributions made with R unless otherwise noted.
 <p align="center">
 <img src="2025/images/prompt1_2025.png" width="60%">
 </p>
+
+## [Day 2 - Comparisons: Slope](https://www.gregdubrow.io/)
