@@ -97,7 +97,7 @@ edattain %>%
 				panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
 	guides(fill = guide_legend(label.position = "bottom", reverse = TRUE, direction = "horizontal",
 														 nrow = 1,
-														 title = "Highest Educational Attainment", title.position = "top")) +
+														 title = "Highest Educational Attainment", title.position = "top"))
 rm(tmp)
 
 ggsave("2025/images/prompt1_2025.jpg", width = 15, height = 8,

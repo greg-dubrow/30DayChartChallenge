@@ -11,7 +11,6 @@ library(patchwork)
 # some custom functions
 source("~/Data/r/basic functions.R")
 
-LIGEUB1
 table_meta <- danstat::get_table_metadata(table_id = "ligeub1", variables_only = TRUE)
 
 # create variable list using the ID value in the variable
@@ -122,7 +121,7 @@ plot_grundsk <-
 	filter(ed_group2 == "Grundskole/Primary") %>%
 	slope_graph() +
 	labs(title = "Primary school (thru grade 10)",
-			 subtitle = "*In 2023 Danes of all ages were much less likely to have stopped their education at<br>primary school
+			 subtitle = "*In 2023 Danes of all ages were much less likely to have stopped their<br>education at primary school
 			 than they were in 2005.<br>*")
 
 plot_hs <-
@@ -131,8 +130,8 @@ plot_hs <-
 	slope_graph() +
 	labs(title = "Gymnasium & Vocational (High School)",
 			 subtitle = "*From 2005 to 2023, there was a steep decline in the percentage of Danes<br>
-			 aged 25-49 who were finished with education at the high school level, especially<br>
-			 Danes under 40. For Danes older than 50 there was a very slight increase.*")
+			 aged 25-49 who were finished with education at the high school level.<br>
+			 For Danes older than 50 there was a very slight increase.*")
 
 plot_colldegs <-
 	edattain2 %>%
@@ -140,15 +139,15 @@ plot_colldegs <-
 	slope_graph() +
 	labs(title = "2-year & Bachelor's Degrees",
 			 subtitle = "*For Danes of all age groups, but especially those under 50, there was a<br>
-			 noticable increase in the percentage earning 2 or 4 year degrees.*")
+			 noticable increase in the percentage earning 2 or 4 year degrees.<br>*")
 
 plot_masters <-
 	edattain2 %>%
 	filter(ed_group2 == "Tertiary - Masters+") %>%
 	slope_graph() +
 	labs(title = "Master's & PhD Degrees",
-			 subtitle = "*The percentage of Danes earning a Master's or PhD increased across all age groups between 2005 and 2025;<br>
-			 the increase was strongest among Danes under 50.*")
+			 subtitle = "*The percentage of Danes earning a Master's or PhD increased across all age<br>
+			 groups between 2005 and 2025; the increase was strongest among<br>Danes under 50.*")
 
 plot_grundsk + plot_hs + plot_colldegs + plot_masters +
 	plot_annotation(

@@ -4,7 +4,7 @@ A repository containing code for the 2025 edition of the 30 Day Chart Challenge.
 
 More details on the 2025 challenge at [GitHub](https://github.com/30DayChartChallenge/Edition2025).
 
-Follow my contributions on [my data blog](https://www.gregdubrow.io/).
+Follow my contributions on [my data blog](https://www.gregdubrow.io/). 
 
 All contributions made with R unless otherwise noted. 
 
@@ -21,3 +21,5 @@ All contributions made with R unless otherwise noted.
 <p align="center">
 <img src="images/prompt2_2025.jpg" width="80%">
 </p>
+
+## [Day 3 - Comparisons: Circular](https://www.gregdubrow.io/)
