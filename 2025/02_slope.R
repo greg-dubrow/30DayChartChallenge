@@ -151,10 +151,10 @@ plot_masters <-
 
 plot_grundsk + plot_hs + plot_colldegs + plot_masters +
 	plot_annotation(
-		title = "Danes of all ages have become more likely to continue their education beyond primary level. Danes under 50 have over time become likely to earn a Master's.",
+		title = "Danes of all ages have become more likely to continue their education beyond primary level.<br>Danes under 50 have become likely to earn a Master's.",
 		subtitle = "*Highest level of education earned by age groups, in 2005 and 2023.*",
 		caption = "*Data from Danmarks Statistik via danstat package. Groups are not longitudinal - age is for the person in the year of data collection.*") &
-	theme(plot.title = element_text(size = 16), plot.subtitle = element_markdown(),
+	theme(plot.title = element_markdown(size = 16), plot.subtitle = element_markdown(),
 		plot.caption = element_markdown(),
 		plot.background = element_rect(colour = "grey", fill=NA))
 
