@@ -28,6 +28,7 @@ edattain1 <- get_data("ligeub1", variables_ed, language = "da") %>%
 	as_tibble() %>%
 	select(year = TID, age = ALDER, edlevel = HFUDD, n = INDHOLD)
 
+# collapse age and education level groups
 edattain <-
 	edattain1 %>%
 	filter(!edlevel == "I alt") %>%
@@ -62,7 +63,8 @@ edattain <-
 				 				 					 "Tertiary - PhD", "Not stated")))
 glimpse(edattain)
 
-# redo education level groups - combine 2 & 4 year undergrad, and masters & phd
+# for less cluttered display,
+#    redo education level groups - combine 2 & 4 year undergrad, and masters & phd
 edattain2 <- edattain %>%
 	filter(!ed_group == "Not stated") %>%
 	select(-age_group_tot, -age_ed_pct) %>%
@@ -82,33 +84,6 @@ edattain2 <- edattain %>%
 	ungroup() %>%
 	mutate(age_ed_pct = round(n / age_group_tot, 2))
 
-# faceting plots...not using
-edattain2 %>%
-	ggplot(aes(x = year, y = age_ed_pct, group = age_group, color = age_group)) +
-	geom_line(size = 1) +
-	geom_point(size = .2) +
-	scale_x_continuous(breaks = c(2005, 2023),
-										 labels = c("2005", "2023")) +
-#	scale_y_continuous(limits = c(0, .5), breaks = seq(0, .5, by = .1)) +
- scale_y_continuous(#limits = c(0, .5),
- 									 labels = scales::label_percent()) +
-	scale_color_brewer(palette = "Set2") +
-	labs(x = "", y = "") +
-	facet_wrap(vars(ed_group2)) +
-	theme_minimal() +
-	theme(legend.position = "bottom", legend.spacing.x = unit(0, 'cm'),
-				legend.key.width = unit(4, 'cm'), legend.margin=margin(-10, 0, 0, 0),
-				legend.text = element_text(size = 12), legend.title = element_text(size = 16),
-				plot.title = element_text(hjust = .5, size = 20),
-				plot.subtitle = element_text(size = 16),
-				plot.caption = element_markdown(size = 12, face = "italic"),
-				axis.text.x = element_text(size = 14),
-				axis.text.y = element_text(size = 14),
-				panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-				strip.background = element_blank()) +
-	guides(color = guide_legend(label.position = "bottom", reverse = FALSE, direction = "horizontal",
-														 nrow = 1,
-														 title = "Age Group", title.position = "top"))
 
 # create chart function
 slope_graph <- function(plotdf) {
@@ -124,10 +99,13 @@ slope_graph <- function(plotdf) {
 		labs(x = "", y = "") +
 		theme_minimal() +
 		theme(legend.position = "bottom", legend.spacing.x = unit(0, 'cm'),
-					legend.key.width = unit(4, 'cm'), legend.margin=margin(-10, 0, 0, 0),
-					legend.text = element_text(size = 12), legend.title = element_text(size = 16),
-					axis.text.x = element_text(size = 14),
-					axis.text.y = element_text(size = 14),
+					legend.key.width = unit(3, 'cm'), legend.margin=margin(-10, 0, 0, 0),
+					legend.text = element_text(size = 10), legend.title = element_text(size = 12),
+					plot.title = element_text(hjust = .5, size = 16),
+					plot.subtitle = element_markdown(size = 14, vjust = -.5),
+					plot.caption = element_markdown(size = 12, face = "italic"),
+					axis.text.x = element_text(size = 11),
+					axis.text.y = element_text(size = 11),
 					panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 					strip.background = element_blank()) +
 		guides(color = guide_legend(label.position = "bottom", reverse = FALSE, direction = "horizontal",
@@ -139,55 +117,81 @@ edattain2 %>%
 	count(ed_group2)
 
 # create individual plots with titles and annotations
-#plot_grundsk <-
+plot_grundsk <-
 	edattain2 %>%
 	filter(ed_group2 == "Grundskole/Primary") %>%
 	slope_graph() +
-	labs(title = "2-year & Bachelor's Degrees",
-			 subtitle = "*In 2023 Danes of all ages were much less likely to have stopped their education at primary school<br>
-			 than they were in 2005*") +
-	theme(
-				plot.title = element_text(hjust = .5, size = 20),
-				plot.subtitle = element_markdown(size = 16, vjust = -.5),
-				plot.caption = element_markdown(size = 12, face = "italic"))
+	labs(title = "Primary school (thru grade 10)",
+			 subtitle = "*In 2023 Danes of all ages were much less likely to have stopped their education at<br>primary school
+			 than they were in 2005.<br>*")
 
-#plot_hs <-
+plot_hs <-
 	edattain2 %>%
 	filter(ed_group2 == "Secondary") %>%
 	slope_graph() +
-	labs(title = "Gymnasium & Vocational",
-			 subtitle = "*While the percent of in Danes in all age groups earning a 2-year or Bachelor's as their highest degree<br>
-			 increased between 2005 and 2023, the highest rate of increase was for Danes aged 60-69*") +
-	theme(legend.position = "none",
-				plot.title = element_text(hjust = .5, size = 18),
-				plot.subtitle = element_markdown(size = 15, vjust = -1),
-				plot.caption = element_markdown(size = 12, face = "italic"))
+	labs(title = "Gymnasium & Vocational (High School)",
+			 subtitle = "*From 2005 to 2023, there was a steep decline in the percentage of Danes<br>
+			 aged 25-49 who were finished with education at the high school level, especially<br>
+			 Danes under 40. For Danes older than 50 there was a very slight increase.*")
 
 plot_colldegs <-
 	edattain2 %>%
 	filter(ed_group2 == "Tertiary - 2yr/Bach") %>%
 	slope_graph() +
 	labs(title = "2-year & Bachelor's Degrees",
-			 subtitle = "*In 2023 relative to 2005, there was a noticable decrease in younger Danes stopping their") +
-	theme(legend.position = "none",
-				plot.title = element_text(hjust = .5, size = 18),
-				plot.subtitle = element_markdown(size = 15, vjust = -1),
-				plot.caption = element_markdown(size = 12, face = "italic"))
+			 subtitle = "*For Danes of all age groups, but especially those under 50, there was a<br>
+			 noticable increase in the percentage earning 2 or 4 year degrees.*")
 
-#plot_masters <-
+plot_masters <-
 	edattain2 %>%
 	filter(ed_group2 == "Tertiary - Masters+") %>%
 	slope_graph() +
 	labs(title = "Master's & PhD Degrees",
-			 subtitle = "*The percentage of Danes earning a Master's or PhD increased across all age groups between 2005 and 2025<br>
-			 and the increase was especially pronounced in Danes under 50*") +
-	theme(legend.position = "none",
-				plot.title = element_text(hjust = .5, size = 18),
-				plot.subtitle = element_markdown(size = 15),
-				plot.caption = element_markdown(size = 12, face = "italic"))
+			 subtitle = "*The percentage of Danes earning a Master's or PhD increased across all age groups between 2005 and 2025;<br>
+			 the increase was strongest among Danes under 50.*")
+
+plot_grundsk + plot_hs + plot_colldegs + plot_masters +
+	plot_annotation(
+		title = "Danes of all ages have become more likely to continue their education beyond primary level. Danes under 50 have over time become likely to earn a Master's.",
+		subtitle = "*Highest level of education earned by age groups, in 2005 and 2023.*",
+		caption = "*Data from Danmarks Statistik via danstat package. Groups are not longitudinal - age is for the person in the year of data collection.*") &
+	theme(plot.title = element_text(size = 16), plot.subtitle = element_markdown(),
+		plot.caption = element_markdown(),
+		plot.background = element_rect(colour = "grey", fill=NA))
+
+ggsave("2025/images/prompt2_2025.jpg", width = 15, height = 8,
+			 units = "in", dpi = 300)
 
 
-## code ideas not used in final
+### code ideas not used in final
+## faceting plots...not using
+# edattain2 %>%
+# 	ggplot(aes(x = year, y = age_ed_pct, group = age_group, color = age_group)) +
+# 	geom_line(size = 1) +
+# 	geom_point(size = .2) +
+# 	scale_x_continuous(breaks = c(2005, 2023),
+# 										 labels = c("2005", "2023")) +
+# 	#	scale_y_continuous(limits = c(0, .5), breaks = seq(0, .5, by = .1)) +
+# 	scale_y_continuous(#limits = c(0, .5),
+# 		labels = scales::label_percent()) +
+# 	scale_color_brewer(palette = "Set2") +
+# 	labs(x = "", y = "") +
+# 	facet_wrap(vars(ed_group2)) +
+# 	theme_minimal() +
+# 	theme(legend.position = "bottom", legend.spacing.x = unit(0, 'cm'),
+# 				legend.key.width = unit(4, 'cm'), legend.margin=margin(-10, 0, 0, 0),
+# 				legend.text = element_text(size = 12), legend.title = element_text(size = 16),
+# 				plot.title = element_text(hjust = .5, size = 20),
+# 				plot.subtitle = element_text(size = 16),
+# 				plot.caption = element_markdown(size = 12, face = "italic"),
+# 				axis.text.x = element_text(size = 14),
+# 				axis.text.y = element_text(size = 14),
+# 				panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+# 				strip.background = element_blank()) +
+# 	guides(color = guide_legend(label.position = "bottom", reverse = FALSE, direction = "horizontal",
+# 															nrow = 1,
+# 															title = "Age Group", title.position = "top"))
+
 # %>%
 # 	mutate(age =
 # 				 	factor(age,
