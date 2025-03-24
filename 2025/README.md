@@ -18,3 +18,6 @@ All contributions made with R unless otherwise noted.
 </p>
 
 ## [Day 2 - Comparisons: Slope](https://www.gregdubrow.io/)
+<p align="center">
+<img src="images/prompt2_2025.jpg" width="80%">
+</p>
