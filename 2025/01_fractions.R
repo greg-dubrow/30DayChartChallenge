@@ -79,12 +79,12 @@ edattain %>%
 	geom_text(data = subset(tmp, age_pct >0.025),
 						aes(label = scales::percent(round(age_pct , 2))),
 						position = position_stack(vjust = 0.5),
-						color= "white", vjust = 0.5, size = 12) +
+						color= "white", vjust = 0.5, size = 8) +
 	scale_fill_brewer(palette = "Set3") +
-	labs(title = "Danes under 40 have a higher rate of post-Bachelor educational attainment than other age groups",
-			 subtitle = "Highest education level attained by age groups",
+	labs(title = "Danes under 40 have a higher rate of tertiary educational attainment than other age groups",
+			 subtitle = "Highest education level attained by age groups, 2023",
 			 caption = "*Data from Danmarks Statistik via danstat package*",
-			 x = "", y = "Age Group") +
+			 x = "", y = "") +
 	theme_minimal() +
 	theme(legend.position = "bottom", legend.spacing.x = unit(0, 'cm'),
 				legend.key.width = unit(4, 'cm'), legend.margin=margin(-10, 0, 0, 0),
@@ -97,7 +97,7 @@ edattain %>%
 				panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
 	guides(fill = guide_legend(label.position = "bottom", reverse = TRUE, direction = "horizontal",
 														 nrow = 1,
-														 title = "Highest Educational Attainment", title.position = "top"))
+														 title = "Highest Educational Attainment", title.position = "top")) +
 rm(tmp)
 
 ggsave("2025/images/prompt1_2025.jpg", width = 15, height = 8,
