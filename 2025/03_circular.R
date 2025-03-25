@@ -7,6 +7,7 @@ library(danstat) # package to get Danish statistics via api
 library(ggtext) # enhancements for text in ggplot
 library(ggrepel)
 library(scales)
+library(packcircles)
 #library(patchwork)
 
 # some custom functions
