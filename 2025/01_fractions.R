@@ -17,7 +17,7 @@ variables_ed <- list(
 	list(code = "bopomr", values = c("000", "081", "082", "083", "084", "085")),
 	list(code = "hfudd", values = c("H10", "H20", "H30", "H35",
 																	"H40", "H50", "H60", "H70", "H80", "H90")),
-	list(code = "køn", values = c("TOT")),
+#	list(code = "longrp", values = c("TIME", "FAST")),
 	list(code = "alder", values = c("25-29", "30-34", "35-39", "40-44", "45-49",
 																	"50-54", "55-59", "60-64", "65-69")),
 	list(code = "tid", values = 2023))
