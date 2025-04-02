@@ -28,3 +28,8 @@ All contributions made with R unless otherwise noted.
 <p align="center">
 <img src="images/prompt3_2025.jpg" width="80%">
 </p>
+
+## [Day 4 - Comparisons: Big or Small](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt4)
+<p align="center">
+<img src="images/prompt4_2025.jpg" width="80%">
+</p>
