@@ -81,7 +81,7 @@ ggplot() +
 				plot.caption = element_markdown(size = 8)) +
 	coord_equal()
 
-ggsave("2025/images/prompt3_2025.jpg", width = 15, height = 8,
+ggsave("2025/images/prompt4_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
 ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt4_2025.jpg",

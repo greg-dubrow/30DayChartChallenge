@@ -110,6 +110,9 @@ sal2 %>%
 ggsave("2025/images/prompt3_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt3_2025.jpg",
+			 width = 15, height = 8, units = "in", dpi = 300)
+
 
 ## code not using...tried other data, final results worked best
 #	scale_color_viridis_c(
