@@ -48,23 +48,42 @@ bacdegs <- bacdegs1 %>%
 		str_detect(deg_code, "H6035") ~ "Science",
 		str_detect(deg_code, "H6039") ~ "Social Sciences",
 		str_detect(deg_code, "H6059") ~ "Technical sciences",
-		str_detect(deg_code, "H6075") ~ "Technical sciences",
-		str_detect(deg_code, "H6080") ~ "Agriculture & Veterinary",
+		str_detect(deg_code, "H6075") ~ "Food/Biotech/Lab Tech",
+		str_detect(deg_code, "H6080") ~ "Agriculture/Nature/Environment",
 		str_detect(deg_code, "H6090") ~ "Health science",
-		TRUE ~ "no")) %>%
+		TRUE ~ "All")) %>%
 	rename(degs_n = INDHOLD, sex = KØN)
+# %>%
+# 	group_by(deg_field, deg_group) %>%
+# 	mutate(deg_field_n = sum(degs_n)) %>%
+# 	mutate(deg_field_pct = degs_n/deg_field_n) %>%
+# 	ungroup() %>%
+# 	group_by(sex, deg_field) %>%
+# 	mutate(deg_sex_field_pct = degs_n / deg_field_n)
 
 glimpse(bacdegs)
 
 bacdegs %>%
-	count(deg_name)
+	count(deg_field)
+
+bacdegs %>%
+	filter(deg_group == "Main") %>%
+	select(deg_field, degs_n, sex, deg_field_n)
+
 
 ## plots
-# "Education"             "Humanities"
-# [4] "Arts"                  "Science"               "Social Sciences"
-# [7] "Technical sciences"    "Agriculture & Veterinary" "Health science"
+# "Agriculture/Nature/Environment" X
+# Arts" X
+# "Education" not doing chart
+# "Food/Biotech/Lab Tech"not doing chart
+# "Health science" X
+# "Humanities" X
+# "Science"
+# "Social Sciences"
+# "Technical sciences"
 
-# not shown is Education, only one major field, 117 women, 17 men
+# not shown is Education, only one major field, 117 women, 17 men and
+# Food, Biotech, Lab Tech with 61 total, men 20 women 41 all in general Food & Nutrition science
 
 bacdegs %>%
 	filter(deg_group == "Main") %>%
@@ -86,20 +105,22 @@ bacdegs %>%
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none",
-				plot.subtitle = element_markdown(),
-				plot.caption = element_markdown())
+				plot.title = element_markdown(size = 16, hjust = 0),
+				plot.subtitle = element_markdown(size = 14, hjust = 0),
+				plot.caption = element_markdown(),
+				strip.text = element_text(size = 12))
 
-ggsave("2025/images/prompt5_1_2025.jpg", width = 15, height = 8,
+ggsave("2025/images/prompt5_all_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
-ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_1_2025.jpg",
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_all_2025.jpg",
 			 width = 15, height = 8, units = "in", dpi = 300)
 
 
 #plot_agvet <-
 	bacdegs %>%
 	filter(deg_group == "Sub") %>%
-	filter(deg_field == "Agriculture & Veterinary") %>%
+	filter(deg_field == "Agriculture/Nature/Environment") %>%
 	{. ->> tmp} %>%
 	ggplot(aes(x = degs_n, y = reorder_within(deg_name, degs_n, sex), fill = sex)) +
 	geom_bar(stat = "identity") +
@@ -107,7 +128,7 @@ ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_1
 	scale_y_reordered() +
 	scale_x_continuous(labels = comma) +
 	labs(x = "", y = "",
-			 title = "Agriculture & Veterinary Science Bachelor degrees by field & sex, 2023",
+			 title = "Agriculture, Nature, & Environment Science Bachelor degrees by field & sex, 2023",
 			 subtitle = glue::glue("*Total degrees earned = 308: Men = 55, Women = 253*")) +
 	facet_wrap(~ sex, scales = "free_y") +
 	geom_text(data = subset(tmp, degs_n > 100),
@@ -117,12 +138,15 @@ ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_1
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none",
-				plot.subtitle = element_markdown())
+				plot.title = element_markdown(size = 16, hjust = 0),
+				plot.subtitle = element_markdown(size = 14, hjust = 0),
+				plot.caption = element_markdown(),
+				strip.text = element_text(size = 12))
 
-ggsave("2025/images/prompt5_2_2025.jpg", width = 15, height = 8,
+ggsave("2025/images/prompt5_ag_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
-ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_2_2025.jpg",
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_ag_2025.jpg",
 			 width = 15, height = 8, units = "in", dpi = 300)
 
 
@@ -147,12 +171,15 @@ ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_2
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none",
-				plot.subtitle = element_markdown())
+				plot.title = element_markdown(size = 16, hjust = 0),
+				plot.subtitle = element_markdown(size = 14, hjust = 0),
+				plot.caption = element_markdown(),
+				strip.text = element_text(size = 12))
 
-ggsave("2025/images/prompt5_3_2025.jpg", width = 15, height = 8,
+ggsave("2025/images/prompt5_art_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
-ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_3_2025.jpg",
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_art_2025.jpg",
 			 width = 15, height = 8, units = "in", dpi = 300)
 
 
@@ -177,15 +204,16 @@ ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_3
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none",
-				plot.subtitle = element_markdown())
+				plot.title = element_markdown(size = 16, hjust = 0),
+				plot.subtitle = element_markdown(size = 14, hjust = 0),
+				plot.caption = element_markdown(),
+				strip.text = element_text(size = 12))
 
-ggsave("2025/images/prompt5_4_2025.jpg", width = 15, height = 8,
+ggsave("2025/images/prompt5_health_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
-ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_4_2025.jpg",
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_health_2025.jpg",
 			 width = 15, height = 8, units = "in", dpi = 300)
-
-
 
 #plot_human <-
 	bacdegs %>%
@@ -208,12 +236,15 @@ ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_4
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none",
-				plot.subtitle = element_markdown())
+				plot.title = element_markdown(size = 16, hjust = 0),
+				plot.subtitle = element_markdown(size = 14, hjust = 0),
+				plot.caption = element_markdown(),
+				strip.text = element_text(size = 12))
 
-ggsave("2025/images/prompt5_5_2025.jpg", width = 15, height = 8,
+ggsave("2025/images/prompt5_hum_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
-ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_5_2025.jpg",
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_hum_2025.jpg",
 			 width = 15, height = 8, units = "in", dpi = 300)
 
 
@@ -238,12 +269,15 @@ ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_5
 		theme_minimal() +
 		theme(panel.grid = element_blank(),
 					legend.position = "none",
-					plot.subtitle = element_markdown())
+					plot.title = element_markdown(size = 16, hjust = 0),
+					plot.subtitle = element_markdown(size = 14, hjust = 0),
+					plot.caption = element_markdown(),
+					strip.text = element_text(size = 12))
 
-ggsave("2025/images/prompt5_6_2025.jpg", width = 15, height = 8,
+ggsave("2025/images/prompt5_sci_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
-ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_6_2025.jpg",
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_sci_2025.jpg",
 			 width = 15, height = 8, units = "in", dpi = 300)
 
 
@@ -268,12 +302,15 @@ bacdegs %>%
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 		legend.position = "none",
-		plot.subtitle = element_markdown())
+		plot.title = element_markdown(size = 16, hjust = 0),
+		plot.subtitle = element_markdown(size = 14, hjust = 0),
+		plot.caption = element_markdown(),
+		strip.text = element_text(size = 12))
 
-ggsave("2025/images/prompt5_7_2025.jpg", width = 15, height = 8,
+ggsave("2025/images/prompt5_soc_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
-ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_7_2025.jpg",
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_soc_2025.jpg",
 			 width = 15, height = 8, units = "in", dpi = 300)
 
 
@@ -298,24 +335,15 @@ bacdegs %>%
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none",
-				plot.subtitle = element_markdown())
+				plot.title = element_markdown(size = 16, hjust = 0),
+				plot.subtitle = element_markdown(size = 14, hjust = 0),
+				plot.caption = element_markdown(),
+				strip.text = element_text(size = 12))
 
-ggsave("2025/images/prompt5_8_2025.jpg", width = 15, height = 8,
+ggsave("2025/images/prompt5_tech_2025.jpg", width = 15, height = 8,
 			 units = "in", dpi = 300)
 
-ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_8_2025.jpg",
-			 width = 15, height = 8, units = "in", dpi = 300)
-
-
-plot_agvet + plot_arts
-
-plot_health + plot_human
-plot_sci + plot_socsci + plot_techci
-
-ggsave("2025/images/prompt5_2025.jpg", width = 15, height = 8,
-			 units = "in", dpi = 300)
-
-ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_2025.jpg",
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt5_tech_2025.jpg",
 			 width = 15, height = 8, units = "in", dpi = 300)
 
 

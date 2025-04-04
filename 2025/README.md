@@ -36,5 +36,5 @@ All contributions made with R unless otherwise noted.
 
 ## [Day 5 - Comparisons: Ranking](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt5)
 <p align="center">
-<img src="images/prompt5_1_2025.jpg" width="80%">
+<img src="images/prompt5_all_2025.jpg" width="80%">
 </p>
