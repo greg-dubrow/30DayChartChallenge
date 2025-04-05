@@ -43,3 +43,11 @@ All contributions made with R unless otherwise noted.
 <p align="center">
 <img src="images/prompt6_sosu_all_2025.jpg" width="80%">
 </p>
+
+## [Day 7 & 8 - Distributions: Outliers & Histogram](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompts7and8)
+<p align="center">
+<img src="images/prompt7&8_hist_2025" width="80%">
+</p>
+<p align="center">
+<img src="images/prompt7&8_outl_2025" width="80%">
+</p>

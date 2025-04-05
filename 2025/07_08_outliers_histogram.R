@@ -37,10 +37,11 @@ vet_all <- vet1 %>%
 	filter(!grepl("Total", deg_code)) %>%
 	mutate(deg_level = if_else(str_length(deg_code) == 5, "Main", "Sub")) %>%
 	mutate(deg_level = if_else(deg_code == "H30", "All", deg_level)) %>%
-	mutate(deg_name = sub("^\\S+\\s+", '', uddannelse)) %>%
-	mutate(deg_outlier_calc = ifelse(deg_level == "Sub" & indhold > 0, 1 ,0)) %>%
-	mutate(deg_outlier = ifelse(deg_outlier_calc == 1
-															& (indhold>mean(indhold)+2*sd(indhold)), "outlier", "normal"))
+	mutate(deg_name = sub("^\\S+\\s+", '', uddannelse))
+# %>%
+# 	mutate(deg_outlier_calc = ifelse(deg_level == "Sub" & indhold > 0, 1 ,0)) %>%
+# 	mutate(deg_outlier = ifelse(deg_outlier_calc == 1
+# 															& (indhold>mean(indhold)+2*sd(indhold)), "outlier", "normal"))
 
 glimpse(vet_all)
 
@@ -52,6 +53,21 @@ vet_all %>%
 						min_degs = min(indhold),
 						max_degs = max(indhold),
 						std_degs = sd(indhold))
+
+# outliers for prompt 7. need df with only major + 0 degrees
+vet_majors <- vet_all %>%
+	filter(deg_level == "Sub") %>%
+	filter(indhold > 0) %>%
+	mutate(degs_mean = mean(indhold),
+				 degs_std = sd(indhold),
+				 degs_pctl10 = quantile(indhold, 0.10),
+				 degs_pctl90 = quantile(indhold, 0.90)) %>%
+	mutate(outlier = case_when(
+		indhold >= degs_pctl90 ~ "outlier+ > 90thpctl",
+		indhold <= degs_pctl10 ~ "outlier- < 10thpctl",
+		TRUE ~ "not outlier")) %>%
+	mutate(outlier = factor(outlier,
+													levels = c("outlier+ > 90thpctl", "not outlier", "outlier- < 10thpctl")))
 
 vet_majors %>%
 	select(deg_name, indhold) %>%
@@ -91,20 +107,6 @@ ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt7&8
 			 width = 15, height = 8, units = "in", dpi = 300)
 
 
-# outliers for prompt 7. need df with only major + 0 degrees
-vet_majors <- vet_all %>%
-	filter(deg_level == "Sub") %>%
-	filter(indhold > 0) %>%
-	mutate(degs_mean = mean(indhold),
-				 degs_std = sd(indhold),
-				 degs_pctl10 = quantile(indhold, 0.10),
-				 degs_pctl90 = quantile(indhold, 0.90)) %>%
-	mutate(outlier = case_when(
-		indhold >= degs_pctl90 ~ "outlier+ > 90thpctl",
-		indhold <= degs_pctl10 ~ "outlier- < 10thpctl",
-		TRUE ~ "not outlier")) %>%
-	mutate(outlier = factor(outlier,
-													levels = c("outlier+ > 90thpctl", "not outlier", "outlier- < 10thpctl")))
 
 # horizontal bar with fills based on outlier status, bars for mean and median
 # for annotation,
