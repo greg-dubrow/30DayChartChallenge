@@ -4,12 +4,9 @@ library(tidyverse) # to do tidyverse things
 library(tidylog) # to get a log of what's happening to the data
 library(janitor) # tools for data cleaning
 library(danstat) # package to get Danish statistics via api
-library(dkstat)
 library(ggtext) # enhancements for text in ggplot
-library(ggrepel)
 library(scales)
 library(tidytext)
-library(patchwork)
 
 # some custom functions
 source("~/Data/r/basic functions.R")
@@ -55,6 +52,7 @@ sosu_all %>%
 sosu_all %>%
 	count(national_origin)
 
+### INCREASE CHART LABEL & TITLE FONT SIZES
 
 # change in number of total sosu degrees over time
 sosu_all %>%
@@ -67,7 +65,7 @@ sosu_all %>%
 	scale_x_continuous(breaks = c(2019, 2020, 2021, 2022, 2023, 2024)) +
 	scale_y_continuous(labels = comma) +
 	geom_text(aes(label = comma(n)), vjust = 1.5,
-						size = 5, color = "white") +
+						size = 8, color = "white") +
 	labs(x = "", y = "",
 			 title = "SOSU degrees awarded increased by greater than 200% from 2019 to 2024",
 			 subtitle = "*Vocational program: H301020 Social- og sundhedsuddannelsen*",
@@ -75,8 +73,8 @@ sosu_all %>%
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none",
-				plot.title = element_markdown(size = 16, hjust = 0),
-				plot.subtitle = element_markdown(size = 12, hjust = 0),
+				plot.title = element_markdown(size = 18, hjust = 0),
+				plot.subtitle = element_markdown(size = 14, hjust = 0),
 				plot.caption = element_markdown())
 
 ggsave("2025/images/prompt6_sosu_all_2025.jpg", width = 15, height = 8,
@@ -100,7 +98,7 @@ sosu_all %>%
 	scale_x_continuous(breaks = c(2019, 2020, 2021, 2022, 2023, 2024)) +
 	scale_y_continuous(limits = c(0, .04), labels = label_percent()) +
 	geom_text(aes(label = percent(sosu_pct, 2)),
-						size = 4.5, color = "white", vjust = 1.5) +
+						size = 10, color = "white", vjust = 1.5) +
 	labs(x = "", y = "",
 			 title = "SOSU degrees doubled as pct of all H30 vocational degrees from 2019 to 2024,
 			 accounting for more than the total increase in H30 degrees",
@@ -138,7 +136,7 @@ sosu_all %>%
 	scale_y_continuous(labels = label_percent()) +
 	geom_text(aes(label = percent(sex_pct, 2)),
 						position = position_stack(vjust = 0.5),
-						size = 4.5, color = "white") +
+						size = 7, color = "white") +
 	labs(x = "", y = "",
 			 title = "Women earn the vast majority of SOSU degrees awarded",
 			 subtitle = "*<span style='color: #E66100;'>Men</span> --
@@ -147,8 +145,8 @@ sosu_all %>%
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none",
-				plot.title = element_markdown(size = 16, hjust = 0),
-				plot.subtitle = element_markdown(size = 12, hjust = 0),
+				plot.title = element_markdown(size = 18, hjust = 0),
+				plot.subtitle = element_markdown(size = 14, hjust = 0),
 				plot.caption = element_markdown())
 
 ggsave("2025/images/prompt6_sosu_sex_2025.jpg", width = 15, height = 8,
@@ -176,7 +174,7 @@ sosu_all %>%
 	geom_text(data = subset(tmp, nat_org_pct > 0.01),
 		aes(label = percent(nat_org_pct, 2)),
 						position = position_stack(vjust = 0.5),
-						size = 4.5, color = "white") +
+						size = 8, color = "white") +
 	labs(x = "", y = "",
 			 title = "Slight increase in percent of SOSU degrees awarded to immigrants",
 			subtitle = "*<span style='color: #CC79A7;'>Danish origin = at least 1 parent born in & citizen of DK</span>;
@@ -186,8 +184,8 @@ sosu_all %>%
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none", legend.title = element_blank(),
-				plot.title = element_markdown(size = 16, hjust = 0),
-				plot.subtitle = element_markdown(size = 11, hjust = 0),
+				plot.title = element_markdown(size = 18, hjust = 0),
+				plot.subtitle = element_markdown(size = 12, hjust = 0),
 				plot.caption = element_markdown())
 rm(tmp)
 
@@ -217,7 +215,7 @@ sosu_all %>%
 	geom_text(data = subset(tmp, nat_org_pct > 0.01),
 						aes(label = percent(nat_org_pct, 2)),
 						position = position_stack(vjust = 0.5),
-						size = 4.5, color = "white") +
+						size = 8, color = "white") +
 	facet_wrap(~ sex) +
 	labs(x = "", y = "",
 			 title = "Slight increase in percent of SOSU degrees awarded to immigrants",
@@ -228,8 +226,8 @@ sosu_all %>%
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none", legend.title = element_blank(),
-				plot.title = element_markdown(size = 16, hjust = 0),
-				plot.subtitle = element_markdown(size = 11, hjust = 0),
+				plot.title = element_markdown(size = 18, hjust = 0),
+				plot.subtitle = element_markdown(size = 14, hjust = 0),
 				plot.caption = element_markdown())
 rm(tmp)
 
@@ -256,7 +254,7 @@ sosu_all %>%
 	scale_y_continuous(labels = label_percent()) +
 	geom_text(aes(label = percent(sex_pct, 2)),
 						position = position_stack(vjust = 0.5),
-						size = 4.5, color = "white") +
+						size = 8, color = "white") +
 	labs(x = "", y = "",
 			 title = "While 90% of SOSU degrees are awarded to women, men earn slightly higher percent of all H30 vocational degrees",
 			 subtitle = "*<span style='color: #E66100;'>Men</span> --
@@ -265,8 +263,8 @@ sosu_all %>%
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none",
-				plot.title = element_markdown(size = 16, hjust = 0),
-				plot.subtitle = element_markdown(size = 12, hjust = 0),
+				plot.title = element_markdown(size = 18, hjust = 0),
+				plot.subtitle = element_markdown(size = 14, hjust = 0),
 				plot.caption = element_markdown())
 rm(tmp)
 
@@ -296,7 +294,7 @@ sosu_all %>%
 	geom_text(data = subset(tmp, nat_org_pct > 0.01),
 						aes(label = percent(nat_org_pct, 2)),
 						position = position_stack(vjust = 0.5),
-						size = 4.5, color = "white") +
+						size = 7, color = "white") +
 	labs(x = "", y = "",
 			 title = "Immigrant share of all H30 vocational degrees less than half the share of SOSU degrees",
 			 subtitle = "*<span style='color: #CC79A7;'>Danish origin = at least 1 parent born in & citizen of DK</span>;
@@ -306,8 +304,8 @@ sosu_all %>%
 	theme_minimal() +
 	theme(panel.grid = element_blank(),
 				legend.position = "none", legend.title = element_blank(),
-				plot.title = element_markdown(size = 16, hjust = 0),
-				plot.subtitle = element_markdown(size = 11, hjust = 0),
+				plot.title = element_markdown(size = 18, hjust = 0),
+				plot.subtitle = element_markdown(size = 12, hjust = 0),
 				plot.caption = element_markdown())
 rm(tmp)
 
