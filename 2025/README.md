@@ -51,3 +51,8 @@ All contributions made with R unless otherwise noted.
 <p align="center">
 <img src="images/prompt7&8_outl_2025.jpg" width="80%">
 </p>
+
+## [Day 9 - Distributions: Diverging](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt9)
+<p align="center">
+<img src="images/prompt9_all_2025.jpg" width="80%">
+</p>
