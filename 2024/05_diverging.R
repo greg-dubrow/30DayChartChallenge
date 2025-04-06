@@ -72,6 +72,8 @@ edattain1 <- edattain %>%
 
 glimpse(edattain1)
 
+vlines_df <- data.frame(xintercept = seq(-100, 100, 20))
+
 edattain1 %>%
 	filter(!edlevel == "Not stated") %>%
 	distinct(sex, edlevel, .keep_all = TRUE) %>%
