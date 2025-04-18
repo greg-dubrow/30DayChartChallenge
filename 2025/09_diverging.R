@@ -104,8 +104,6 @@ bacdegs %>%
 	geom_vline(data = vlines_df, aes(xintercept = xintercept), color = "#FFFFFF", size = 0.1, alpha = 0.5) +
 	coord_cartesian(clip = "off") +
 	scale_fill_manual(values = c("#E66100", "#5D3A9B")) +
-#	scale_fill_manual(values = c("#C8102E", "#FFFFFF")) +
-#	scale_color_manual(values = c("#C8102E", "#C8102E")) +
 	scale_color_manual(values = c("white", "white")) +
 	geom_text(data = subset(tmp, sex == "Men"),
 						aes(x = deg_sex_pct2, y = deg_field, label = paste0(abs(deg_sex_pct2), "%")),
@@ -140,7 +138,7 @@ ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt9_a
 bacdegs %>%
 	count(deg_field)
 
-## function for individual dicispline tables
+## function for individual discipline tables
 disc_top10 <- function(degfield, dfname = "NA") {
 dfout <- bacdegs %>%
 	filter(deg_group == "Sub") %>%
