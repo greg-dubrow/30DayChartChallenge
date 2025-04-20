@@ -6,6 +6,7 @@ library(tidyverse) # to do tidyverse things
 library(tidylog) # to get a log of what's happening to the data
 library(janitor) # tools for data cleaning
 library(tidytuesdayR) #to get data from tidy tuesday repo
+library(waffle)
 
 # some custom functions
 source("~/Data/r/basic functions.R")
@@ -83,7 +84,7 @@ ukeduc2	%>%
 	geom_waffle(na.rm=TRUE, n_rows=10, flip=TRUE, size = 0.33, colour = "white") +
 	facet_wrap(~region, nrow=1,strip.position = "bottom") +
 	scale_x_discrete() +
-	scale_y_continuous(labels = function(x) x * 10, # make this multiplyer the same as n_rows
+	scale_y_continuous(labels = function(x) x * 10, # make this multipler the same as n_rows
 										 expand = c(0,0)) +
 	scale_fill_brewer(palette = "Set2") +
 		labs(title = "Students in London most likely to have at least 4-year degree by Age 22",
