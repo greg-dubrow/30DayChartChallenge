@@ -64,5 +64,5 @@ All contributions made with R unless otherwise noted.
 
 ## [Day 15 - Relationships: Complicated](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt15)
 <p align="center">
-<img src="images/prompt15_2025.png" width="80%">
+<img src="images/prompt15_2025.jpg" width="80%">
 </p>
