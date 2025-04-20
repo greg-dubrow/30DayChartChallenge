@@ -2,7 +2,7 @@ library(tidyverse) # to do tidyverse things
 library(tidylog) # to get a log of what's happening to the data
 library(janitor) # tools for data cleaning
 library(danstat) # package to get Danish statistics via api
-library(infer) # tidy statistical inference
+library(waffle) # to make waffles
 library(scales)
 library(patchwork)
 library(ggtext)
@@ -185,8 +185,6 @@ waffleplot <- function(plotdf, filter_expr) {
 					legend.spacing.x = unit(0, 'cm'),
 					legend.key.width = unit(1, 'cm'), legend.margin=margin(-10, 0, 0, 0),
 					legend.title = element_text(size = 8), legend.text = element_text(size = 8),
-					# plot.title = element_text(hjust = 0), plot.subtitle = element_markdown(),
-					# plot.caption = element_markdown(),
 					panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
 				guides(fill = guide_legend(label.position = "bottom",
 					title = "Higher education completion status", title.position = "top"))
@@ -221,7 +219,7 @@ plot_4045 +
 plot_2529 + plot_3034 +  plot_3539 + plot_4045 +
 	plot_annotation(
 		title = "In Denmark, regardless of age, the likelihood of completing higher education increases as level of parent education increases.",
-		subtitle = "Higher education completion status for people ages 25-45, by parent educational attainment and age group, 2023. Each block = 1 %",
+		subtitle = "Higher education completion status for people ages 25-45, by age group and parent educational attainment, 2023. Each block = 1 %",
 		caption = "Data from Danmarks Statistik table STATUSV2 via danstat package")
 
 ggsave("2025/images/prompt15_2025.jpg", width = 15, height = 8,
