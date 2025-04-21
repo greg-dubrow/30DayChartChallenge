@@ -59,7 +59,7 @@ All contributions made with R unless otherwise noted.
 
 ## [Day 13 - Relationships: Clusters](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt13)
 <p align="center">
-<img src="images/prompt13_2025.png" width="80%">
+<img src="images/prompt13_2025.jpg" width="80%">
 </p>
 
 ## [Day 14 - Relationships: Kinship](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt14)
