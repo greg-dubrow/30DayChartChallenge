@@ -71,3 +71,8 @@ All contributions made with R unless otherwise noted.
 <p align="center">
 <img src="images/prompt15_2025.jpg" width="80%">
 </p>
+
+## [Day 20 - Time Series: Urbanization](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt20)
+<p align="center">
+<img src="images/prompt20_2_2025.jpg" width="80%">
+</p>
