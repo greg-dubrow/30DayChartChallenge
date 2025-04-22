@@ -179,8 +179,8 @@ ed_urban_main %>%
 	coord_cartesian(expand = FALSE, clip = "off") +
 	facet_wrap(~muni_grp, scales = "free") +
 	labs(x = "", y = "",
-		title = "Danes in all municipal groups are earning higher levels of education over time.
-		The Capital & Metropolitan groups have higher percentages of people with Bachelor & Master's degrees.",
+		title = "People in all municipal groups are earning higher levels of education.
+		The Capital & Metropolitan groups have higher percentages of people with Bachelors & Masters.",
 		subtitle = "Percentage of people ages 15-69 by municipal group in Denmark, 2008-2023.",
 		caption = "*Data from Danmarks Statistik table LABY19 via danstat package*") +
 	theme(
