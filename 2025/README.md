@@ -81,3 +81,8 @@ All contributions made with R unless otherwise noted.
 <p align="center">
 <img src="images/prompt20_2_2025.jpg" width="80%">
 </p>
+
+## [Day 23 - Time Series: Log](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt23)
+<p align="center">
+<img src="images/prompt23_inc_sex_2025.jpg" width="80%">
+</p>
