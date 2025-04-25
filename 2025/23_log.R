@@ -402,10 +402,10 @@ ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt23_
 	facet_grid(afloen ~ ed_level, axes = "all", axis.labels = "all_x") +
 	#theme_minimal() +
 	theme(
-		plot.title = element_markdown(size = 14),
+		plot.title = element_markdown(size = 13),
 		plot.subtitle = element_markdown(size = 12),
 		plot.caption = element_markdown(size = 9),
-		axis.text.x = element_text(size = 8, color = "grey50"),
+		axis.text.x = element_text(size = 7, color = "grey50"),
 		axis.text.y = element_text(size = 9, color = "grey50"),
 		strip.background.x = element_rect(fill = "grey90", color = "grey95"),
 		strip.text = element_text(size = 11),
@@ -417,7 +417,7 @@ rm(tmp)
 ggsave("2025/images/prompt23_inc_sex_deg_2025.jpg", width = 15, height = 8,
 	units = "in", dpi = 300)
 
-ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt23_inc_sex_2025.jpg",
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt23_inc_sex_deg_2025.jpg",
 	width = 15, height = 8, units = "in", dpi = 300)
 
 
