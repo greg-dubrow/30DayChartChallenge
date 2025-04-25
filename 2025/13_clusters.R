@@ -229,7 +229,7 @@ rdplot <-
 		mapping = aes(
 			x = sector_field_funding_pct, y = pct_chg_funding_2023,
 			fill = col, colour = col,
-			# here we add iteractive aesthetics
+			# here we add interactive aesthetics
 			tooltip = paste0(sector_field, "; ", dkk_million_2023_c), data_id = sector),
 		pch = 21, alpha = 0.3, size = 3) +
 	geom_point_interactive(
