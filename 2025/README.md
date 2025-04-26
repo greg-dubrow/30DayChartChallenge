@@ -74,7 +74,7 @@ All contributions made with R unless otherwise noted.
 
 ## [Day 18 - Relationships: El Pais](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt18)
 <p align="center">
-<img src="images/prompt18_2025.jpg" width="80%">
+<img src="images/prompt18_2025.png" width="80%">
 </p>
 
 ## [Day 19 - Time Series: Smooth](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt19)
