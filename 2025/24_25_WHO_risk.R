@@ -247,3 +247,4 @@ girafe(
 #
 # palettes <- ggthemes_data[["tableau"]][["color-palettes"]][["regular"]]
 # palettes[[2]]
+
