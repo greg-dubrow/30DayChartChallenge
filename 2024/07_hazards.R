@@ -184,6 +184,8 @@ dk_crime_map <- function(offence, maptitle) {
 	return(g)
 }
 
+glimpse(crime_2023)
+
 # one map
 dk_crime_map("Special acts", "Special Acts Crimes")
 
