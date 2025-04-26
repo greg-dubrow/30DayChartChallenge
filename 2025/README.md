@@ -89,5 +89,5 @@ All contributions made with R unless otherwise noted.
 
 ## [Day 24 & 25 - Distributions & Uncertainties: WHO data & Risk](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompts24and25)
 <p align="center">
-<img src="images/prompt7&8_hist_2025.jpg" width="80%">
+<img src="images/prompt24_25_euro.png" width="80%">
 </p>
