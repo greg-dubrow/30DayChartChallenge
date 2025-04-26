@@ -37,19 +37,19 @@ All contributions made with R unless otherwise noted. Because I started the chal
 <img src="images/prompt6_2024.png" width="60%">
 </p>
 
-## [Prompt 7 - Comparisons: OECD](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt7)
+## [Prompt 7 - Distributions: Hazards](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt7)
 <p align="center">
 <img src="images/prompt7_2024.png" width="60%">
 </p>
 
-## [Prompt 8 - Comparisons: OECD](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt8)
+## [Prompt 8 - Distributions: Circular](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt8)
 <p align="center">
 <img src="images/prompt8_2024_hour.png" width="60%">
 <p align="center">
 <img src="images/prompt8_2024_minute.png" width="60%">
 </p>
 
-## [Prompt 9 - Comparisons: OECD](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt9)
+## [Prompt 9 - Distributions: Major/Minor](https://www.gregdubrow.io/posts/30-day-chart-challenge-2024/#prompt9)
 <p align="center">
 <img src="images/prompt9_2024.png" width="60%">
 </p>
