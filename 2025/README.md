@@ -89,7 +89,7 @@ All contributions made with R unless otherwise noted.
 
 ## [Day 21 & 22 - Time Series: Fossils & Stars](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompts21and22)
 <p align="center">
-	<img src="images/prompt21_22_2_2025.jpg" width="80%">
+	<img src="images/prompt21_22_1_2025.jpg" width="80%">
 	</p>
 
 ## [Day 23 - Time Series: Log](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt23)
