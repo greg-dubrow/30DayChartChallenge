@@ -133,8 +133,8 @@ funding %>%
 	theme(
 		plot.title = element_markdown(size = 14), plot.subtitle = element_markdown(size = 11),
 		plot.caption = element_markdown(size = 8),
-		axis.text.x = element_text(size = 7, color = "grey50"),
-		axis.text.y = element_text(size = 7, color = "grey50"),
+		axis.text.x = element_text(size = 11, color = "grey50"),
+		axis.text.y = element_text(size =11, color = "grey50"),
 		strip.background.x = element_rect(fill = "grey90", color = "grey95"),
 		legend.position = "bottom", legend.justification = "left",
 		legend.spacing.x = unit(0, 'cm'),
@@ -167,8 +167,8 @@ funding %>%
 	theme(
 		plot.title = element_markdown(size = 14), plot.subtitle = element_markdown(size = 11),
 		plot.caption = element_markdown(size = 8),
-		axis.text.x = element_text(size = 7, color = "grey50"),
-		axis.text.y = element_text(size = 7, color = "grey50"),
+		axis.text.x = element_text(size = 11, color = "grey50"),
+		axis.text.y = element_text(size = 11, color = "grey50"),
 		strip.background.x = element_rect(fill = "grey90", color = "grey95"),
 		legend.position = "bottom", legend.justification = "left",
 		legend.spacing.x = unit(0, 'cm'),
