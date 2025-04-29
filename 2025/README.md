@@ -87,7 +87,7 @@ All contributions made with R unless otherwise noted.
 <img src="images/prompt20_2_2025.jpg" width="80%">
 </p>
 
-## [Day 21 & 22 - Time Series: Fossils & Stars](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompts21and22)
+## [Days 21 & 22 - Time Series: Fossils & Stars](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompts21and22)
 <p align="center">
 	<img src="images/prompt21_22_1_2025.jpg" width="80%">
 	</p>
@@ -97,7 +97,7 @@ All contributions made with R unless otherwise noted.
 <img src="images/prompt23_inc_sex_2025.jpg" width="80%">
 </p>
 
-## [Day 24 & 25 - Distributions & Uncertainties: WHO data & Risk](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompts24and25)
+## [Days 24 & 25 - Distributions & Uncertainties: WHO data & Risk](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompts24and25)
 <p align="center">
 	<img src="images/prompt24_25_euro.png" width="80%">
 	</p>
