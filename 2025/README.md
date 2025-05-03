@@ -104,6 +104,6 @@ All contributions made with R unless otherwise noted.
 
 ## [Day 28 - Uncertainties: Inclusion](https://www.gregdubrow.io/posts/30-day-chart-challenge-2025/#prompt28)
 <p align="center">
-<img src="images/prompt28_??_2025.jpg" width="80%">
+<img src="images/prompt28_degsall_2025.jpg" width="80%">
 </p>
 

@@ -6,6 +6,7 @@ library(ggtext) # enhancements for text in ggplot
 library(scales)
 library(waffle) # to make waffles
 library(patchwork)
+library(tidytext)
 
 
 # some custom functions
@@ -399,7 +400,7 @@ table_meta_levels <- danstat::get_table_metadata(table_id = "uddakt12", variable
 variables_voced <- list(
 	list(code = "uddannelse", values = c("H30", "H3010", "H3015", "H3020",
 		"H3025", "H3030", "H3035", "H3040", "H3045", "H3050", "H3055",
-		"H3060", "H3065", "H3090", "H35", "H3510", "H3520", "H3530",
+		"H3060", "H3065", "H3090",
 		"H50", "H5020", "H5024", "H5025", "H5030", "H5038", "H5039", "H5058",
 		"H5059", "H5075", "H5080", "H5085", "H5089", "H5095",
 		"H70", "H7020", "H7025", "H7030", "H7035", "H7039", "H7059", "H7075",
@@ -418,36 +419,209 @@ voced_degs1 <- get_data("uddakt12", variables_voced, language = "en") %>%
 glimpse(voced_degs1)
 
 voced_degs <- voced_degs1 %>%
+	mutate(nat_origin_group = paste0(herkomst, "-", herkomst1)) %>%
+	filter(!nat_origin_group == "Immigrants-Denmark") %>%
+	filter(!nat_origin_group == "Descendant-Denmark") %>%
+	filter(!nat_origin_group == "Descendant-National origin, not stated") %>%
+	filter(!nat_origin_group == "Descendant-Total") %>%
+	filter(!nat_origin_group == "Immigrants-Total") %>%
+	mutate(nat_origin_group = ifelse(
+		(nat_origin_group == "Immigrants-National origin, not stated" & indhold >0),
+		"Immigrants-Non-western countries", nat_origin_group)) %>%
+	filter(!nat_origin_group == "Immigrants-National origin, not stated")%>%
 	mutate(deg_code = str_extract(uddannelse, "^[^ ]+")) %>%
+	mutate(deg_level = case_when(
+		deg_code %in% c("H30", "H50", "H70") ~ "Main",
+		TRUE ~ "Sub")) %>%
+	mutate(deg_type = case_when(
+		str_detect(deg_code, "H30") ~ "HS-Vocational",
+		str_detect(deg_code, "H50") ~ "Bachelor-Vocational",
+		str_detect(deg_code, "H70") ~ "Masters")) %>%
 	mutate(deg_name = sub("^\\S+\\s+", '', uddannelse)) %>%
-	mutate(deg_name = str_remove(deg_name, ", BACH")) %>%
-	mutate(deg_name = str_remove(deg_name, " BACH")) %>%
 	mutate(deg_name = str_remove(deg_name, ", SCE")) %>%
 	mutate(deg_name = str_remove(deg_name, ", TBT")) %>%
 	mutate(deg_name = str_remove(deg_name, ", VBE")) %>%
 	mutate(deg_name = str_remove(deg_name, ", MASTER")) %>%
-	mutate(deg_name = str_replace(deg_name, " \\s*\\([^\\)]+\\)", ""))
+	mutate(deg_name = str_replace(deg_name, " \\s*\\([^\\)]+\\)", "")) %>%
+	mutate(deg_name = str_replace(deg_name,
+		"Food, biotechnology and laboratory technology",
+		"Food/Biotech/Lab Tech")) %>%
+	mutate(deg_name = str_replace(deg_name,
+		"Technical and industrial education in general",
+		"Tech & industrial ed: general")) %>%
+	mutate(deg_name = str_replace(deg_name,
+		"The technology area, cycling, automotive and marine mechanics etc.",
+		"Tech: cycling/auto/marine mechanics")) %>%
+	mutate(deg_name = str_replace(deg_name,
+	"The technology area, graphical techniques and media production",
+		"Tech: graphical techniques & media prod")) %>%
+	mutate(deg_name = str_replace(deg_name,
+		"The technology area, mechanical engineering and production",
+		"Tech: mech eng & production")) %>%
+	mutate(deg_name = str_replace(deg_name,
+	"The technology area, power and electronics etc.",
+		"Tech: power & electronics")) %>%
+	mutate(deg_name = str_replace(deg_name,
+		"Office, commercial and business services",
+"Office/commercial/bus svcs")) %>%
+	mutate(deg_name = ifelse(
+		deg_type == "Bachelor-Vocational" &
+		deg_name == "Social science, Economics-Mercantile",
+		"SocSci/Econ-Mercantile", deg_name)) %>%
+	mutate(deg_name = ifelse(
+		deg_name == "Agriculture, nature and environment",
+		"Agri/Nature/Environment", deg_name)) %>%
+	mutate(deg_name = str_replace(deg_name, "educations", "education")) %>%
+	select(deg_code, deg_name, deg_level, deg_type, nat_origin_group, year = tid, N = indhold)
 
 
 glimpse(voced_degs)
 
 voced_degs %>%
-	count(deg_name) %>%
+	count(deg_type, deg_name) %>%
 	view()
 
+# solution via
+# https://forum.posit.co/t/slicing-top-5-for-each-year-in-facet-wrap-plot-and-ordering-them/87267/2
+
+voced_degs_sub <- voced_degs %>%
+	filter(deg_level == "Sub") %>%
+	mutate(year_fct = factor(year)) %>%
+	select(deg_type, deg_name, nat_origin_group, year_fct, N)
+
+glimpse(voced_degs_sub)
+
+voced_degs_sub %>%
+	filter(deg_type == "Bachelor-Vocational") %>%
+	count(deg_name)
+
+voced_degs_sub %>%
+	filter(nat_origin_group == "Immigrants-Non-western countries") %>%
+	filter(deg_type == "HS-Vocational") %>%
+	group_by(year_fct) %>%
+	mutate(deg_name = reorder_within(deg_name, N, year_fct)) %>%
+	slice_max(deg_name, n = 5) %>%
+	{. ->> tmp} %>%
+	ggplot(aes(N, deg_name)) +
+	geom_bar(stat = "identity", fill = "#C60C30") +
+#	scale_fill_manual(values = c("#E66100", "#5D3A9B")) +
+	scale_y_reordered() +
+	scale_x_continuous(labels = comma) +
+	labs(x = "", y = "") +
+	theme(panel.background = element_rect(fill = "white"),
+		panel.grid.minor = element_line(color = "grey90"),
+		plot.title = element_markdown(size = 14, color = "grey35"),
+		plot.subtitle = element_markdown(size = 11),
+		plot.caption = element_markdown(size = 8)) +
+	facet_wrap(~ year_fct, scales = "free_y")
+
+plot_top5degs <- function(plotdf, filter_expr1, filter_expr2) {
+
+	# Convert the string expression to an actual R expression
+	filter_expr1 <- rlang::parse_expr(filter_expr1)
+	filter_expr2 <- rlang::parse_expr(filter_expr2)
+	# Filter the data
+	filtered_df <- plotdf %>%
+		filter(!!filter_expr1) %>%
+		filter(!!filter_expr2)
+
+	# Create the plot
+	filtered_df %>%
+		group_by(year_fct) %>%
+		mutate(deg_name = reorder_within(deg_name, N, year_fct)) %>%
+		slice_max(deg_name, n = 5) %>%
+		{. ->> tmp} %>%
+		ggplot((aes(N, deg_name))) +
+		geom_bar(stat = "identity", fill = "#C60C30") +
+		#	scale_fill_manual(values = c("#E66100", "#5D3A9B")) +
+		scale_y_reordered() +
+		scale_x_continuous(labels = comma) +
+		labs(x = "", y = "",
+			caption = "*Data from Danmarks Statistik table UDDAKT12 via danstat package.*") +
+		theme(panel.background = element_rect(fill = "white"),
+			panel.grid.minor = element_line(color = "grey90"),
+			plot.title = element_markdown(size = 14, color = "grey35"),
+			plot.subtitle = element_markdown(size = 11),
+			plot.caption = element_markdown(size = 8)) +
+		facet_wrap(~ year_fct, scales = "free_y")
+	#rm(tmp)
+}
+
+# Descendant-Non-western countries
+# Descendant-Western countries
+# Immigrants-Non-western countries
+# Immigrants-Western countries
+#  "HS-Vocational",
+#  "Bachelor-Vocational",
+# "Masters"
+
+plot_hsvoc_imm_nw <- plot_top5degs(voced_degs_sub,
+	"nat_origin_group == 'Immigrants-Non-western countries'",
+	"deg_type == 'HS-Vocational'")
+
+plot_bacvoc_imm_nw <- plot_top5degs(voced_degs_sub,
+	"nat_origin_group == 'Immigrants-Non-western countries'",
+	"deg_type == 'Bachelor-Vocational'")
+
+plot_bacvoc_imm_w <- plot_top5degs(voced_degs_sub,
+	"nat_origin_group == 'Immigrants-Western countries'",
+	"deg_type == 'Bachelor-Vocational'")
+
+plot_masters_imm_w <- plot_top5degs(voced_degs_sub,
+	"nat_origin_group == 'Immigrants-Western countries'",
+	"deg_type == 'Masters'")
+
+plot_hsvoc_imm_nw +
+	labs(title = "Health care and business services are consistently the top 2 fields for non-western immigrants earning secondary level vocational degrees.",
+		subtitle = "Top 5 secondary vocation degree areas, immigrants to Denmark from non-western countries, 2005-2024") +
+	theme(axis.text.x = element_text(size = 7),
+		axis.text.y = element_text(size = 7))
+
+ggsave("2025/images/prompt28_hsvoc_immnw_2025.jpg", width = 15, height = 8,
+	units = "in", dpi = 300)
+
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt28_hsvoc_immnw_2025.jpg",
+	width = 15, height = 8, units = "in", dpi = 300)
+
+plot_bacvoc_imm_nw +
+	labs(title = "The top 4 fields frequently change rank for non-western immigrants earning vocational Bachelor's degrees.",
+		subtitle = "Top 5 vocational Bachelor's degree areas, immigrants to Denmark from non-western countries, 2005-2024")
+
+ggsave("2025/images/prompt28_bavoc_immnw_2025.jpg", width = 15, height = 8,
+	units = "in", dpi = 300)
+
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt28_bavoc_immnw_2025.jpg",
+	width = 15, height = 8, units = "in", dpi = 300)
+
+plot_bacvoc_imm_w +
+	labs(title = "Since 2014 the top 2 fields for western immigrants earning vocational Bachelor's degrees have been in tech & mercantile (business).",
+		subtitle = "Top 5 vocational Bachelor's degree areas, immigrants to Denmark from western countries, 2005-2024")
+
+ggsave("2025/images/prompt28_bavoc_imm_w_2025.jpg", width = 15, height = 8,
+	units = "in", dpi = 300)
+
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt28_bavoc_imm_w_2025.jpg",
+	width = 15, height = 8, units = "in", dpi = 300)
+
+
+plot_masters_imm_w +
+	labs(title = "Social sciences and technical sciences are consistently the top 2 fields for western immigrants earning Master's degrees.",
+		subtitle = "Top 5 Master's degree areas, immigrants to Denmark from western countries, 2005-2024")  +
+	theme(axis.text.x = element_text(size = 7),
+		axis.text.y = element_text(size = 8))
+
+ggsave("2025/images/prompt28_mast_imm_w_2025.jpg", width = 15, height = 8,
+	units = "in", dpi = 300)
+
+ggsave("~/Data/greg_dubrow_io/posts/30-day-chart-challenge-2025/images/prompt28_mast_imm_w_2025.jpg",
+	width = 15, height = 8, units = "in", dpi = 300)
 
 
 
 
 
 
-
-
-
-
-
-
-#### probably don't need these
+#### don't need these for this post
 # UDDAKT50 vocational higher ed
 table_meta_voched <- danstat::get_table_metadata(table_id = "uddakt50", variables_only = TRUE)
 
